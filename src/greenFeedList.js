@@ -43,15 +43,45 @@ class GreenFeedList {
         return null; // Inicio del feed
     }
 
-    insertarAlInicio(){
-        //TODO:Implementar Métodos Nuevos
-    }
-    eliminarNodo(){
-        //TODO:Implementar Métodos Nuevos
-    }
-    mostrarFeedCompleto(){
-        //TODO:Implementar Métodos Nuevos
+    insertarAlInicio(titulo, url) {
+        const nuevoVideo = new NodoVideo(titulo, url);
+        if (!this.cabeza) {
+            this.cabeza = this.cola = this.cursor = nuevoVideo;
+        } else {
+            const nodoAntesDelPrimero = this.cabeza;
+            this.cabeza = nuevoVideo;
+            nodoAntesDelPrimero.anterior = nuevoVideo;
+            nuevoVideo.siguiente = nodoAntesDelPrimero;
+            nuevoVideo.anterior = null;
+        }
     }
 
+    eliminarNodo(nodo) {
+        if (nodo.anterior !== null) {
+            nodo.anterior.siguiente = nodo.siguiente
+        } else {
+            this.cabeza = nodo.siguiente
+        }
+        if (nodo.siguiente !== null) {
+            nodo.siguiente.anterior = nodo.anterior
+        } else {
+            this.cola = nodo.anterior
+        }
+        if (this.cursor === nodo) {
+            if (nodo.siguiente !== null) {
+                this.cursor = nodo.siguiente
+            } else {
+                this.cursor = nodo.anterior
+            }
+        }
+    }
+
+    mostrarFeedCompleto() {
+        let nodo = this.cabeza
+        while (nodo !== null) {
+            console.log(`Video: ${nodo.titulo}`)
+            nodo = nodo.siguiente
+        }
+    }
 
 }
