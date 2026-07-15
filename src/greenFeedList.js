@@ -91,6 +91,7 @@ class GreenFeedList {
      * @returns {void} No retorna ningún valor.
      */
     eliminarNodo(nodo) {
+        if (!nodo) return;
         if (nodo.anterior !== null) {
             nodo.anterior.siguiente = nodo.siguiente
         } else {
@@ -116,11 +117,27 @@ class GreenFeedList {
      * @returns {void}
      */
     mostrarFeedCompleto() {
-        let nodo = this.cabeza
+        if (!this.cabeza) {
+            console.log("Feed vacío");
+            return;
+        }
+        let nodo = this.cabeza;
         while (nodo !== null) {
-            console.log(`Video: ${nodo.titulo}`)
-            nodo = nodo.siguiente
+            console.log(`Video: ${nodo.titulo}`);
+            nodo = nodo.siguiente;
         }
     }
+
+    /**
+     * Elimina el video que se encuentra actualmente en el cursor.
+     * Actúa como método de conveniencia sobre eliminarNodo(), delegando
+     * la reconexión de punteros y el desplazamiento del cursor.
+     * Si la lista está vacía (cursor es null), no realiza ninguna acción.
+     * @returns {void} No retorna ningún valor.
+     */
+    eliminarActual() {
+    if (!this.cursor) return; // Lista vacía, nada que eliminar
+    this.eliminarNodo(this.cursor);
+}
 
 }
