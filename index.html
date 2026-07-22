@@ -34,6 +34,24 @@
       </main>
     </div>
 
+<!-- Usuario logueado -->
+    <div id="usuario-sesion" style="
+        position: fixed; top: 15px; right: 15px; z-index: 999;
+        background: rgba(0,0,0,0.6); color: white;
+        padding: 8px 16px; border-radius: 20px; font-size: 14px;
+        backdrop-filter: blur(5px);
+    "></div>
+
+    <script>
+        const usuario = JSON.parse(localStorage.getItem('usuario'));
+        if (!usuario) {
+            window.location.href = 'login.html';
+        } else {
+            document.getElementById('usuario-sesion').innerHTML =
+                `👤 ${usuario.nombre} | <a href="login.html" onclick="localStorage.removeItem('usuario')" style="color:#e94560; text-decoration:none;">Cerrar sesión</a>`;
+        }
+    </script>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
