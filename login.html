@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+        }
+        .logo { text-align: center; margin-bottom: 35px; }
+        .logo h1 { color: #fff; font-size: 28px; font-weight: 700; }
+        .logo p { color: rgba(255, 255, 255, 0.5); font-size: 14px; margin-top: 5px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; color: rgba(255, 255, 255, 0.7); font-size: 13px; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; }
+        input {
+            width: 100%; padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px; color: #fff; font-size: 15px; outline: none; transition: all 0.3s;
+        }
+        input::placeholder { color: rgba(255, 255, 255, 0.3); }
+        input:focus { border-color: #e94560; background: rgba(255, 255, 255, 0.12); }
+        .btn {
+            width: 100%; padding: 15px;
+            background: linear-gradient(135deg, #e94560, #c62a47);
+            color: white; border: none; border-radius: 10px;
+            font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-top: 10px;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(233, 69, 96, 0.4); }
+        .error {
+            background: rgba(233, 69, 96, 0.15);
+            border: 1px solid rgba(233, 69, 96, 0.3);
+            color: #e94560; padding: 12px 16px; border-radius: 8px;
+            font-size: 14px; margin-bottom: 20px; display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>🎵
