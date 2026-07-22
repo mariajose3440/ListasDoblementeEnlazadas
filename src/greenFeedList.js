@@ -4,45 +4,35 @@
  * @author GrupoB
  */
 
-
-/**
- * @class NodoVideo
- * Representa un video dentro del feed, con referencias al video anterior y siguiente.
- */
-class NodoVideo {
-    constructor(titulo, url) {
-        this.titulo = titulo;
-        this.url = url;
-        this.siguiente = null;
-        this.anterior = null;
-    }
-}
-
 /**
  * @class GreenFeedList
  * Representa la lista doblemente enlazada, que maneja la gestion de los videos:
  * Eliminación de un video, insertar un video, y desplazar el cursor.
  */
+import { NodoVideo } from "./NodoVideo.js";
 class GreenFeedList {
     constructor() {
         this.cabeza = null;
         this.cola = null;
         this.cursor = null; // Apunta al video reproduciéndose actualmente
+        this.tamano = 0;
     }
 
-    insertarAlFinal(titulo, url) {
-        const nuevoVideo = new NodoVideo(titulo, url);
-
+    insertarAlFinal(titulo, autor, url,descripcion) {
+        const nuevoVideo = new NodoVideo(titulo, autor, url,descripcion);
 
     if (!this.cabeza) {
             this.cabeza = this.cola = this.cursor = nuevoVideo;
+            this.tamano ++;
         } else {
             this.cola.siguiente = nuevoVideo;
             nuevoVideo.anterior = this.cola;
             this.cola = nuevoVideo;
+            this.tamano ++;
         }
     }
 
+    // Simula el "scroll hacia abajo": avanza al siguiente video
     siguiente() {
         if (this.cursor && this.cursor.siguiente) {
             this.cursor = this.cursor.siguiente;
@@ -51,6 +41,7 @@ class GreenFeedList {
         return null; // Fin del feed
     }
 
+    // Simula el "scroll hacia arriba": vuelve al video anterior
     anterior() {
         if (this.cursor && this.cursor.anterior) {
             this.cursor = this.cursor.anterior;
@@ -69,16 +60,18 @@ class GreenFeedList {
      * @param {string} url URL asociada al video.
      * @returns {void}
      */
-    insertarAlInicio(titulo, url) {
-        const nuevoVideo = new NodoVideo(titulo, url);
+    insertarAlInicio(titulo, autor, url,descripcion) {
+        const nuevoVideo = new NodoVideo(titulo, autor, url,descripcion);
         if (!this.cabeza) {
             this.cabeza = this.cola = this.cursor = nuevoVideo;
+            this.tamano ++;
         } else {
             const nodoAntesDelPrimero = this.cabeza;
             this.cabeza = nuevoVideo;
             nodoAntesDelPrimero.anterior = nuevoVideo;
             nuevoVideo.siguiente = nodoAntesDelPrimero;
             nuevoVideo.anterior = null;
+            this.tamano ++;
         }
     }
 
@@ -107,8 +100,10 @@ class GreenFeedList {
                 this.cursor = nodo.siguiente
             } else {
                 this.cursor = nodo.anterior
+
             }
         }
+        this.tamano --;
     }
 
     /**
@@ -126,6 +121,17 @@ class GreenFeedList {
             console.log(`Video: ${nodo.titulo}`);
             nodo = nodo.siguiente;
         }
+    }
+
+    estaVacia() {
+        return this.tamano === 0;
+    }
+
+    darLike() {
+        if (this.cursor) {
+            this.cursor.likes++;
+        }
+        return this.cursor;
     }
 
     /**
