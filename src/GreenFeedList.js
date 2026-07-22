@@ -10,7 +10,7 @@
  * Eliminación de un video, insertar un video, y desplazar el cursor.
  */
 import { NodoVideo } from "./NodoVideo.js";
-class GreenFeedList {
+export class GreenFeedList {
     constructor() {
         this.cabeza = null;
         this.cola = null;

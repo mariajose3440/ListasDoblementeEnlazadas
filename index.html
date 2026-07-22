@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulación TikTok - Lista Doblemente Enlazada</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Panel del formulario -->
+      <aside class="panel">
+        <h2>Agregar Video</h2>
+        <form id="form-video">
+          <input type="text" id="titulo" placeholder="Título" required />
+          <input type="text" id="autor" placeholder="Autor (@usuario)" required />
+          <input type="text" id="url" placeholder="URL del video (.mp4) o imagen" required />
+          <textarea id="descripcion" placeholder="Descripción / hashtags"></textarea>
+          <button type="submit">Publicar</button>
+        </form>
+        <p class="contador">Videos en la lista: <span id="contador-videos">0</span></p>
+        <button id="btn-eliminar" class="btn-secundario">Eliminar video actual</button>
+      </aside>
+
+      <!-- Feed estilo TikTok -->
+      <main class="feed" id="feed">
+        <button class="flecha flecha-arriba" id="btn-arriba">▲</button>
+
+        <div class="video-actual" id="contenedor-video">
+          <p class="vacio" id="mensaje-vacio">Todavía no hay videos. ¡Agrega el primero! 👆</p>
+        </div>
+
+        <button class="flecha flecha-abajo" id="btn-abajo">▼</button>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
