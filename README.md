@@ -52,6 +52,9 @@ Abre la URL que te muestre la terminal (normalmente `http://localhost:5173`).
 ## 👩‍💻 Autoras
 
 Mishell Vanesa Castillo Flores.
+
 Alisson Lisbeth Gaona Gaona.
+
 María Teresa Rivas Apolo.
+
 María José Rodríguez Saraguro. 
