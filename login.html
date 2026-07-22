@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesión</title>
+    <title>Inicio de Sesión - GreenFeed</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -55,4 +55,47 @@
 <body>
     <div class="container">
         <div class="logo">
-            <h1>🎵
+            <h1>🎵 GreenFeed</h1>
+            <p>Inicia sesión para continuar</p>
+        </div>
+        <div class="error" id="error">Email o contraseña incorrectos.</div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="tucorreo@ejemplo.com" required>
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" id="contrasena" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn">Iniciar Sesión</button>
+        </form>
+    </div>
+    <script type="module">
+        import { obtenerUsuarioPorEmail } from './api/usuariosApi.js';
+
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const contrasena = document.getElementById('contrasena').value;
+            const errorDiv = document.getElementById('error');
+            errorDiv.style.display = 'none';
+
+            try {
+                const usuario = await obtenerUsuarioPorEmail(email);
+                if (usuario.contrasena === contrasena) {
+                    localStorage.setItem('usuario', JSON.stringify({
+                        nombre: usuario.nombre,
+                        email: usuario.email
+                    }));
+                    window.location.href = 'index.html';
+                } else {
+                    errorDiv.style.display = 'block';
+                }
+            } catch (error) {
+                errorDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
