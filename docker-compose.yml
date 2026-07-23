@@ -35,6 +35,8 @@ services:
       MYSQL_PASSWORD: p123
     ports:
       - "3310:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uproyecto", "-pp123"]
       interval: 10s
@@ -46,3 +48,6 @@ services:
 networks:
   greenfeed-net:
     driver: bridge
+
+volumes:
+  mysql_data:
