@@ -46,7 +46,6 @@ docker-compose.override.yml
 *.pid
 
 # Backups / dumps de BD (si alguna vez sacás uno para pruebas)
-*.sql
 *.dump
 *.bson
 
