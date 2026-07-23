@@ -1,0 +1,48 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.vite
+    container_name: greenfeed-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    networks:
+      - greenfeed-net
+
+  backend:
+    build:
+      context: ./usuarios_ws
+      dockerfile: Dockerfile
+    container_name: greenfeed-backend
+    ports:
+      - "8003:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - greenfeed-net
+
+  db:
+    image: mysql:8.0
+    container_name: greenfeed-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: Usuarios
+      MYSQL_USER: proyecto
+      MYSQL_PASSWORD: p123
+    ports:
+      - "3310:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uproyecto", "-pp123"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - greenfeed-net
+
+networks:
+  greenfeed-net:
+    driver: bridge
