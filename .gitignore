@@ -37,6 +37,7 @@ staticfiles/
 Thumbs.db
 
 # Distribución / empaquetado
+node_modules/
 build/
 dist/
 *.egg
