@@ -18,8 +18,24 @@ export class GreenFeedList {
         this.tamano = 0;
     }
 
-    insertarAlFinal(titulo, autor, url,descripcion) {
-        const nuevoVideo = new NodoVideo(titulo, autor, url,descripcion);
+    insertarAlFinal(
+        titulo,
+        autor,
+        url,
+        descripcion,
+        likes = 0,
+        preferencias = [],
+        id = null,
+    ) {
+        const nuevoVideo = new NodoVideo(
+            titulo,
+            autor,
+            url,
+            descripcion,
+            likes,
+            preferencias,
+            id,
+        );
 
     if (!this.cabeza) {
             this.cabeza = this.cola = this.cursor = nuevoVideo;

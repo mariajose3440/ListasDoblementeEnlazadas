@@ -85,8 +85,10 @@
                 const usuario = await obtenerUsuarioPorEmail(email);
                 if (usuario.contrasena === contrasena) {
                     localStorage.setItem('usuario', JSON.stringify({
+                        id: usuario.id_usuario,
                         nombre: usuario.nombre,
-                        email: usuario.email
+                        email: usuario.email,
+                        preferencias: usuario.preferencias ?? []
                     }));
                     window.location.href = 'index.html';
                 } else {
