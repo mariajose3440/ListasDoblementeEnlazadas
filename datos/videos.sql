@@ -9,7 +9,7 @@ Ejecutar después de las migraciones de catalogo_ws.
 */
 
 INSERT INTO video (id, titulo, autor, url_video, descripcion, likes) VALUES
-(1, 'Minahonda', 'bluebul', '/video1.mp4', '#wow #humor', 0),
+(1, 'Minahonda', 'bluebul', '/video1.mp4', '#wow', 0),
 (2, 'Olympics', 'Hoku.Blend', '/video2.mp4', '#deporte #mundial2026 #formula1', 50),
 (3, 'Salsa', 'ColombiaSalsa', '/video3.mp4', '#dance #musica', 10),
 (4, 'GymVlog', 'FitnessCinemastic', '/video4.mp4', '#fitness', 20),
@@ -74,7 +74,6 @@ Distribución:
   Video 14: humor.
 */
 INSERT INTO video_preferencia (id_video, id_preferencia) VALUES
-(1, 3),   -- humor
 (1, 10),  -- WoW
 
 (2, 7),   -- mundial2026
