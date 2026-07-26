@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión - TikTok</title>
     <style>
+        /* Reset básico */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,6 +15,7 @@
             align-items: center;
             justify-content: center;
         }
+        /* Tarjeta del formulario, con efecto "glass" (vidrio esmerilado) */
         .container {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -44,6 +46,7 @@
             font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-top: 10px;
         }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(233, 69, 96, 0.4); }
+        /* Mensaje de error, oculto por defecto */
         .error {
             background: rgba(233, 69, 96, 0.15);
             border: 1px solid rgba(233, 69, 96, 0.3);
@@ -75,15 +78,18 @@
         import { obtenerUsuarioPorEmail } from './api/usuariosApi.js';
 
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+            e.preventDefault(); // evita que el form recargue la página
+
             const email = document.getElementById('email').value;
             const contrasena = document.getElementById('contrasena').value;
             const errorDiv = document.getElementById('error');
             errorDiv.style.display = 'none';
 
             try {
+                // trae al usuario por email y compara la contraseña en el front
                 const usuario = await obtenerUsuarioPorEmail(email);
                 if (usuario.contrasena === contrasena) {
+                    // guarda la sesión en localStorage y redirige
                     localStorage.setItem('usuario', JSON.stringify({
                         id: usuario.id_usuario,
                         nombre: usuario.nombre,
@@ -95,6 +101,7 @@
                     errorDiv.style.display = 'block';
                 }
             } catch (error) {
+                // el usuario no existe o falló la petición: mismo mensaje genérico
                 errorDiv.style.display = 'block';
             }
         });

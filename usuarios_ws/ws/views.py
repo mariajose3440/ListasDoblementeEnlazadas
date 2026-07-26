@@ -7,17 +7,25 @@ from .serializers import UsuarioSerializer
 
 
 class UsuarioListView(ListAPIView):
+    """
+    GET /usuarios/ -> lista todos los usuarios.
+    GET /usuarios/?nombre=algo -> filtra por nombre (coincidencia parcial, sin importar mayúsculas/minúsculas).
+    """
     serializer_class = UsuarioSerializer
 
     def get_queryset(self):
         queryset = Usuario.objects.all()
         nombre = self.request.GET.get('nombre')
         if nombre:
+            # icontains = LIKE %nombre% sin distinguir mayúsculas/minúsculas
             queryset = queryset.filter(nombre__icontains=nombre)
         return queryset
 
 
 class UsuarioPorEmailView(APIView):
+    """
+    GET /usuarios/email/<email>/ -> busca un usuario por su email exacto.
+    """
     def get(self, request, email):
         try:
             usuario = Usuario.objects.get(email=email)

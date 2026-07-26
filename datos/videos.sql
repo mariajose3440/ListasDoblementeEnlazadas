@@ -17,7 +17,12 @@ INSERT INTO video (id, titulo, autor, url_video, descripcion, likes) VALUES
 (6, 'Maquillaje', 'Teresa', '/video6.mp4', '#maquillaje', 3000),
 (7, 'Mundial2026', 'lgsq2', '/video7.mp4', '#mundial2026', 500),
 (8, 'Kpop', 'lunesvra', '/video8.mp4', '#kpop', 600),
-(9, 'BTS', 'verskuy.edit', '/video9.mp4', '#BTS #kpop', 20000000)
+(9, 'BTS', 'verskuy.edit', '/video9.mp4', '#BTS #kpop', 20000000),
+(10, 'Libros', 'Booktok', '/video10.mp4', '#libros', 1000),
+(11, 'Formula1', 'F1', '/video11.mp4', '#formula1', 100700),
+(12, 'Snoopy', 'Snoopy', '/video12.mp4', '#snoopy', 102500),
+(13, 'Programacion', 'Coding', '/video13.mp4', '#programacion', 16000),
+(14, 'Humor', 'Humor43', '/video14.mp4', '#humor', 200000)
 ON DUPLICATE KEY UPDATE
     titulo = VALUES(titulo),
     autor = VALUES(autor),
@@ -58,6 +63,15 @@ Distribución:
   Video 3: música y baile.
   Video 4: fitness.
   Video 5: tendencias.
+  Video 6: maquillaje.
+  Video 7: mundial2026.
+  Video 8: kpop.
+  Video 9: BTS y kpop.
+  Video 10: libros.
+  Video 11: formula1.
+  Video 12: snoopy.
+  Video 13: programación.
+  Video 14: humor.
 */
 INSERT INTO video_preferencia (id_video, id_preferencia) VALUES
 (1, 3),   -- humor
@@ -77,4 +91,9 @@ INSERT INTO video_preferencia (id_video, id_preferencia) VALUES
 (7, 7),  -- mundial2026
 (8, 9),  -- kpop
 (9, 6),  -- BTS
-(9, 9);  -- BTS,kpop
+(9, 9),  -- BTS,kpop
+(10, 1), -- libros
+(11, 4), -- formula1
+(12, 2), -- snoopy
+(13, 5), -- programacion
+(14, 3); -- humor

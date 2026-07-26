@@ -1,3 +1,4 @@
+-- Inserta 4 usuarios de prueba en la tabla Usuario
 INSERT INTO Usuario (nombre, email, contrasena) VALUES
 ('Mishell Castillo', 'mishell@gmail.com', 'mc123'),
 ('Maria Rodriguez', 'maria@gmail.com', 'mr123'),
