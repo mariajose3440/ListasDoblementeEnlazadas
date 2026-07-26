@@ -24,6 +24,43 @@ services:
     networks:
       - greenfeed-net
 
+  catalogo-backend:
+    build:
+      context: ./catalogo_ws
+      dockerfile: Dockerfile
+    container_name: catalogo_api
+    restart: always
+    ports:
+      - "8004:8004"
+    volumes:
+      - ./catalogo_ws:/app
+    depends_on:
+      catalogo-db:
+        condition: service_healthy
+    networks:
+      - greenfeed-net
+
+  catalogo-db:
+    image: mysql:8.0
+    container_name: catalogo-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: Catalogos
+      MYSQL_USER: proyecto
+      MYSQL_PASSWORD: p123
+    ports:
+      - "3307:3306"
+    volumes:
+      - catalogo_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uproyecto", "-pp123" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - greenfeed-net
+
   db:
     image: mysql:8.0
     container_name: greenfeed-db
@@ -38,7 +75,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uproyecto", "-pp123"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uproyecto", "-pp123" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -51,3 +88,4 @@ networks:
 
 volumes:
   mysql_data:
+  catalogo_mysql_data:
