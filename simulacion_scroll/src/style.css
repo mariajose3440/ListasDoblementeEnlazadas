@@ -185,3 +185,37 @@ body {
 .flecha-abajo {
   bottom: 20px;
 }
+
+.panel-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 0 16px;
+  margin: 0;
+}
+
+.panel-toggle-icono {
+  transition: transform 0.2s ease;
+  font-size: 14px;
+}
+
+.panel-toggle[aria-expanded="true"] .panel-toggle-icono {
+  transform: rotate(90deg);
+}
+
+.panel-contenido {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.panel-contenido.abierto {
+  display: flex;
+}

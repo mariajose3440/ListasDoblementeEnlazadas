@@ -10,8 +10,12 @@
     <div class="app">
       <!-- Panel del formulario -->
       <aside class="panel">
-        <h2>Agregar Video</h2>
-        <form id="form-video">
+        <button class="panel-toggle" id="panel-toggle" aria-expanded="false">
+          <span>Agregar Video</span>
+          <span class="panel-toggle-icono">▸</span>
+        </button>
+        <div class="panel-contenido" id="panel-contenido">
+          <form id="form-video">
           <input type="text" id="titulo" placeholder="Título" required />
           <input type="text" id="autor" placeholder="Autor (@usuario)" required />
           <input type="text" id="url" placeholder="URL del video (.mp4) o imagen" required />

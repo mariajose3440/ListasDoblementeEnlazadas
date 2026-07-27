@@ -11,6 +11,13 @@ const contadorVideos = document.getElementById("contador-videos");
 const btnArriba = document.getElementById("btn-arriba");
 const btnAbajo = document.getElementById("btn-abajo");
 const btnEliminar = document.getElementById("btn-eliminar");
+const panelToggle = document.getElementById("panel-toggle");
+const panelContenido = document.getElementById("panel-contenido");
+
+panelToggle.addEventListener("click", () => {
+  const abierto = panelContenido.classList.toggle("abierto");
+  panelToggle.setAttribute("aria-expanded", abierto);
+});
 let sonidoActivo = false;
 
 function esVideo(url) {
@@ -87,34 +94,24 @@ function renderizar() {
   });
 
   if (media instanceof HTMLVideoElement) {
-    const botonSonido = document.createElement("button");
-    botonSonido.className = "btn-sonido";
-    botonSonido.textContent = sonidoActivo
-      ? "🔊 Silenciar"
-      : "🔇 Activar sonido";
-
-    const alternarSonido = async () => {
-      sonidoActivo = !sonidoActivo;
-      media.muted = !sonidoActivo;
-      botonSonido.textContent = sonidoActivo
-        ? "🔊 Silenciar"
-        : "🔇 Activar sonido";
-
-      if (sonidoActivo) {
+    const alternarReproduccion = async () => {
+      if (media.paused) {
         try {
           await media.play();
         } catch (error) {
           console.warn("El navegador bloqueó la reproducción con audio.", error);
         }
+      } else {
+        media.pause();
       }
+
+      sonidoActivo = !media.paused;
+      media.muted = !sonidoActivo;
     };
 
-    botonSonido.addEventListener("click", alternarSonido);
-    media.addEventListener("click", alternarSonido);
-    tarjeta.append(media, botonSonido);
-  } else {
-    tarjeta.append(media);
+    media.addEventListener("click", alternarReproduccion);
   }
+  tarjeta.append(media);
 
   info.append(autor, titulo, descripcion);
   if (nodo.preferencias.length) info.append(etiquetas);

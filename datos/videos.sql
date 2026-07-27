@@ -9,7 +9,7 @@ Ejecutar después de las migraciones de catalogo_ws.
 */
 
 INSERT INTO video (id, titulo, autor, url_video, descripcion, likes) VALUES
-(1, 'Minahonda', 'bluebul', '/video1.mp4', '#wow', 0),
+(1, 'Minahonda', 'bluebul', '/video1.mp4', '#wow', 10),
 (2, 'Olympics', 'Hoku.Blend', '/video2.mp4', '#deporte #mundial2026 #formula1', 50),
 (3, 'Salsa', 'ColombiaSalsa', '/video3.mp4', '#dance #musica', 10),
 (4, 'GymVlog', 'FitnessCinemastic', '/video4.mp4', '#fitness', 20),
@@ -22,7 +22,13 @@ INSERT INTO video (id, titulo, autor, url_video, descripcion, likes) VALUES
 (11, 'Formula1', 'F1', '/video11.mp4', '#formula1', 100700),
 (12, 'Snoopy', 'Snoopy', '/video12.mp4', '#snoopy', 102500),
 (13, 'Programacion', 'Coding', '/video13.mp4', '#programacion', 16000),
-(14, 'Humor', 'Humor43', '/video14.mp4', '#humor', 200000)
+(14, 'Humor', 'Humor43', '/video14.mp4', '#humor', 200000),
+(15, 'Danger', 'army', '/video15.mp4', '#BTS #musica', 200000),
+(16, 'Recorriendo Trazavesh', 'bluebul', '/video16.mp4', '#wow', 200000),
+(17, 'Gatito', 'gato', '/video17.mp4', '#IA  #humor', 200000),
+(18, 'Sobre la felicidad', 'camus', '/video18.mp4', '#existencialismo', 200000),
+(19, 'Lector Omnisciente', 'dokja', '/video19.mp4', '#manwha', 200000)
+
 ON DUPLICATE KEY UPDATE
     titulo = VALUES(titulo),
     autor = VALUES(autor),
@@ -95,4 +101,11 @@ INSERT INTO video_preferencia (id_video, id_preferencia) VALUES
 (11, 4), -- formula1
 (12, 2), -- snoopy
 (13, 5), -- programacion
-(14, 3); -- humor
+(14, 3), -- humor
+(15, 6),  -- BTS
+(15, 14), -- MUSICA
+(16, 10), -- WoW
+(17, 11), -- IA
+(17, 3),  -- humor
+(18, 12), -- existencialismo
+(19, 13) -- manwha

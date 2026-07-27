@@ -16,3 +16,11 @@ CREATE TABLE IF NOT EXISTS UsuarioPreferencia (
   FOREIGN KEY (id_preferencia) REFERENCES Preferencia(id_preferencia)
 );
 SET FOREIGN_KEY_CHECKS = 1;
+
+CREATE TABLE video_preferencia (
+    id_video INT NOT NULL,
+    id_preferencia INT NOT NULL,
+    PRIMARY KEY (id_video, id_preferencia),
+    FOREIGN KEY (id_video) REFERENCES video(id),
+    FOREIGN KEY (id_preferencia) REFERENCES preferencia(id)
+);
